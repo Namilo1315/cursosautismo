@@ -1,0 +1,642 @@
+<html><head><base href=".">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Centro de Capacitación en Autismo | Juntos Aprendemos</title>
+<style>
+:root {
+  --primary: #2E5CB8;    /* Professional medium blue */
+  --secondary: #4A90E2;  /* Softer sky blue */
+  --accent: #FF6B6B;     /* Warm coral for CTAs */
+  --text: #2C3E50;       /* Rich navy for text */
+  --light: #FFFFFF;
+  --background: #F8FAFC;
+  --puzzle-red: #FF6B6B;    /* Warmer puzzle colors */
+  --puzzle-yellow: #FCD669;
+  --puzzle-blue: #4A90E2;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  padding: 0.7rem;
+  color: var(--light);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 5%;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background: var(--light);
+  margin: 5px;
+  transition: 0.3s;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  font-size: large;
+}
+
+.nav-links a {
+  color: var(--light);
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+    z-index: 100;
+  }
+  
+  .nav-links {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    height: 100vh;
+    width: 250px; /* Changed from 100% to 250px for better mobile view */
+    background: var(--primary);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s;
+    z-index: 99;
+    padding: 2rem; /* Added padding */
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-links a {
+    margin: 1rem 0; /* Reduced margin */
+    font-size: 1.2rem; /* Reduced from 1.5rem */
+  }
+
+  .hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+}
+
+.hero {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+  background-image: url('https://images.unsplash.com/photo-1603354350317-6f7aaa5911c5?auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  color: var(--light);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.5));
+}
+
+.hero-content {
+  max-width: 800px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--light);
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: var(--light);
+}
+
+.services {
+  padding: 4rem 5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: var(--light);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.service-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  fill: var(--primary);
+}
+
+.service-card:hover {
+  border-left: 4px solid var(--puzzle-blue);
+  transform: translateY(-5px);
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: var(--accent);
+  color: var(--light);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: 0.3s;
+  margin-top: 1rem;
+}
+
+.cta-button:hover {
+  background: #e45a5a;
+  transform: scale(1.05);
+}
+
+.contact {
+  background: var(--primary);
+  color: var(--light);
+  padding: 4rem 5%;
+  text-align: center;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.5rem;
+  border: none;
+  border-radius: 5px;
+}
+
+footer {
+  background: var(--text);
+  color: var(--light);
+  text-align: center;
+  padding: 1rem;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+.about-section {
+  padding: 6rem 5%;
+  background: linear-gradient(to bottom, var(--background), #fff);
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-content h2 {
+  color: var(--primary);
+  margin-bottom: 2rem;
+  font-size: 2.8rem;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.about-content h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin: 4rem 0;
+}
+
+.about-card {
+  background: var(--light);
+  padding: 2.5rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-number {
+  font-size: 3.5rem;
+  color: var(--primary);
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.about-content > p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-card p {
+  color: var(--text);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.announcement-banner {
+  background: linear-gradient(135deg, var(--puzzle-blue), var(--primary));
+  color: var(--light);
+  padding: 1rem;
+  text-align: center;
+}
+
+.announcement-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.announcement-content h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.banner-cta {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--light);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 0.5rem;
+  transition: 0.3s;
+}
+
+.banner-cta:hover {
+  background: #e45a5a;
+  transform: scale(1.05);
+}
+
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  animation: pulse 2s infinite;
+}
+
+.whatsapp-icon {
+  background: #25D366;
+  color: white;
+  border-radius: 50%;
+  padding: 12px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: transform 0.3s;
+}
+
+.whatsapp-icon:hover {
+  transform: scale(1.1);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+.social-links {
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.social-icon {
+  color: var(--light);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s;
+  background: rgba(255,255,255,0.1);
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
+</style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav">
+      <div class="logo">AutismoAprende</div>
+      <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="nav-links">
+        <a href="./autismo.html">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#sobre-nosotros">Sobre Nosotros</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Capacitación Especializada en Autismo</h1>
+      <p>Formando profesionales y familias para crear un mundo más inclusivo</p>
+      <a href="#contacto" class="cta-button">Comienza Tu Formación</a>
+    </div>
+  </section>
+
+  <section class="services" id="servicios">
+    <a href="./capacitacion.html" class="service-card floating">
+      <svg class="service-icon" viewBox="0 0 24 24">
+        <path d="M12 3L1 9L12 15L21 10.09V17H23V9M5 13.18V17.18L12 21L19 17.18V13.18L12 17L5 13.18Z"/>
+      </svg>
+      <h3>Capacitación Profesional</h3>
+      <p>Programas especializados para educadores, terapeutas y profesionales de la salud.</p>
+    </a>
+
+    <a href="./talleres.html" class="service-card floating">
+      <svg class="service-icon" viewBox="0 0 24 24">
+        <path d="M12,5A3.5,3.5 0 0,0 8.5,8.5A3.5,3.5 0 0,0 12,12A3.5,3.5 0 0,0 15.5,8.5A3.5,3.5 0 0,0 12,5M12,7A1.5,1.5 0 0,1 13.5,8.5A1.5,1.5 0 0,1 12,10A1.5,1.5 0 0,1 10.5,8.5A1.5,1.5 0 0,1 12,7M5.5,8A2.5,2.5 0 0,0 3,10.5C3,11.44 3.53,12.25 4.29,12.68C4.65,12.88 5.06,13 5.5,13C5.94,13 6.35,12.88 6.71,12.68C7.08,12.47 7.39,12.17 7.62,11.81C6.89,10.86 6.5,9.7 6.5,8.5C6.5,8.41 6.5,8.31 6.5,8.22C6.2,8.08 5.86,8 5.5,8M18.5,8C18.14,8 17.8,8.08 17.5,8.22C17.5,8.31 17.5,8.41 17.5,8.5C17.5,9.7 17.11,10.86 16.38,11.81C16.5,12 16.63,12.15 16.78,12.3C16.94,12.45 17.1,12.58 17.29,12.68C17.65,12.88 18.06,13 18.5,13C18.94,13 19.35,12.88 19.71,12.68C20.47,12.25 21,11.44 21,10.5A2.5,2.5 0 0,0 18.5,8M12,14V16H13V14H11M11,12H13V6H11V12Z"/>
+      </svg>
+      <h3>Talleres para Familias</h3>
+      <p>Orientación y herramientas prácticas para familias con miembros en el espectro autista.</p>
+    </a>
+
+    <a href="./consultoria.html" class="service-card floating">
+      <svg class="service-icon" viewBox="0 0 24 24">
+        <path d="M12,3C17.5,3 22,6.58 22,11C22,15.42 17.5,19 12,19C10.76,19 9.57,18.82 8.47,18.5C5.55,21 2,21 2,21C4.33,18.67 4.7,17.1 4.75,16.5C3.05,15.07 2,13.13 2,11C2,6.58 6.5,3 12,3M11,14V16H13V14H11M11,12H13V6H11V12Z"/>
+      </svg>
+      <h3>Consultoría</h3>
+      <p>Asesoramiento personalizado para instituciones educativas y centros terapéuticos.</p>
+    </a>
+
+    <a href="#contacto" class="service-card floating">
+      <svg class="service-icon" viewBox="0 0 24 24">
+        <path d="M16,15H13V12H16M16,8H13V11H16M19,3H18V1H16V3H8V1H6V3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3M19,19H5V8H19V19Z"/>
+      </svg>
+      <h3>Curso de Acompañante Terapéutico</h3>
+      <p>Formación especializada para profesionales en el campo del autismo. ¡Contáctanos para más información!</p>
+    </a>
+  </section>
+
+  <div class="announcement-banner">
+    <div class="announcement-content">
+      <h3>¡Nueva Apertura! Curso de Acompañante Terapéutico</h3>
+      <p>Especialízate en el acompañamiento de personas con autismo</p>
+      <a href="#contacto" class="banner-cta">Solicitar Información</a>
+    </div>
+  </div>
+
+  <section class="about-section" id="sobre-nosotros">
+    <div class="about-content">
+      <h2>Sobre Nosotros</h2>
+      <p>Con más de 5 años de experiencia especializada en el campo del autismo, nos hemos consolidado como un centro líder en capacitación y formación profesional. Nuestro equipo multidisciplinario está compuesto por especialistas altamente calificados, incluyendo psicólogos, terapeutas ocupacionales y educadores especiales, todos con amplia experiencia en el espectro autista.</p>
+      
+      <div class="about-grid">
+        <div class="about-card">
+          <div class="stat-number">5+</div>
+          <p>Años de Experiencia</p>
+        </div>
+        <div class="about-card">
+          <div class="stat-number">1000+</div>
+          <p>Profesionales Capacitados</p>
+        </div>
+        <div class="about-card">
+          <div class="stat-number">500+</div>
+          <p>Familias Asesoradas</p>
+        </div>
+      </div>
+      
+      <p style="margin-top: 2rem">Nuestro compromiso con la excelencia y la actualización constante nos permite ofrecer programas de capacitación basados en las últimas investigaciones y metodologías en el campo del autismo. Trabajamos en estrecha colaboración con instituciones educativas y centros especializados para garantizar que nuestros programas cumplan con los más altos estándares de calidad.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <h2>Contáctanos</h2>
+    <div class="contact-form">
+      <form id="contactForm" action="https://formsubmit.co/natalia89751315@gmail.com" method="POST">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Nombre" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Correo electrónico" required>
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder="Mensaje" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="cta-button">Enviar Mensaje</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://facebook.com/" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10 10 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/>
+        </svg>
+      </a>
+      <a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="social-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/>
+        </svg>
+      </a>
+    </div>
+    <p>© 2024 AutismoAprende. Todos los derechos reservados.</p>
+  </footer>
+
+  <a href="https://wa.me/5492616246767?text=¡Hola!%20Quiero%20información%20sobre..." class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+    <div class="whatsapp-icon">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </div>
+  </a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Smooth scroll para los enlaces de navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Animación para las tarjetas de servicios
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    document.querySelectorAll('.service-card').forEach((card) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(50px)';
+        card.style.transition = 'all 0.6s ease-out';
+        observer.observe(card);
+    });
+
+    // Manejo del menú hamburguesa
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+
+    // Cerrar el menú al hacer clic en un enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
+
+    // Manejo del formulario
+    const form = document.querySelector('#contactForm');
+    form.addEventListener('submit', function(e) {
+        const name = form.querySelector('[name="name"]').value;
+        
+        // Show thank you message after form submits
+        const thankYouModal = document.createElement('div');
+        thankYouModal.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--secondary);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        `;
+        thankYouModal.innerHTML = `
+            <h3 style="margin-bottom: 1rem;">¡Muchas gracias ${name}!</h3>
+            <p>Nos pondremos en contacto lo antes posible.</p>
+        `;
+        document.body.appendChild(thankYouModal);
+        
+        // Remove modal after 3 seconds
+        setTimeout(() => {
+            thankYouModal.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => thankYouModal.remove(), 300);
+        }, 3000);
+    });
+
+    // Add CSS for modal animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -60%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translate(-50%, -50%); }
+            to { opacity: 0; transform: translate(-50%, -60%); }
+        }
+    `;
+    document.head.appendChild(style);
+});
+</script>
+</body></html>
